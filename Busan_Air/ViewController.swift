@@ -36,23 +36,23 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate {
     
     // 광복동, 초량동
     let addrs:[String:[String]] = [
-        "남포역" : ["부산 중구 남포동 구덕로 지하 12", "35.097883", "129.0324743", "남포역 대합실"],
-        "서면역 1호선 대합실" : ["부산광역시 부산진구 중앙대로 786", "35.1576568", "129.0601088"," 1호선 대합실"],
-        "서면역 1호선 승강장" : ["부산광역시 부산진구 부전동 573-1", "35.157826", "129.060115", "서면역 1호선 승강장"],
-        "서면역 2호선 대합실" : ["부산 부산진구 부전1동 중앙대로 지하 730", "35.1578157", "129.0589388"," 2호선 대합실"],
-        "서면역 2호선 승강장" : [" 부산광역시 부산진구 부전2동 257-65", "35.1569111", "128.0569447", "2호선 승강장"],
-        "사상역" : ["부산광역시 괘법동", "35.1625397", "128.985913", "사상역 대합실"],
-        "수영역" : ["부산광역시 수영구 수영로 576", "35.167273", "129.115664", "한국환경공단", "도시대기", "주거지역"],
-        "연산역" : ["부산광역시 연산동", "35.1865484", "129.0780535", "연산연 대합실"],
-        "미남역" : ["부산광역시 온천3동", "35.2054534", "129.065853", "미남역 대합실"],
+        "남포역" : ["중구 남포동 구덕로 지하 12", "35.098041", "129.035033", "남포역 대합실"],
+        "서면역 1호선 대합실" : ["부산진구 부전동 260-22", "35.1583462", "129.0582437"," 1호선 대합실"],
+        "서면역 1호선 승강장" : ["부산진구 부전2동 중앙대로 720-1", "35.1570747", "129.0583408", "서면역 1호선 승강장"],
+        "서면역 2호선 대합실" : ["부산진구 부전동 257-63", "35.1570747", "129.0583408"," 2호선 대합실"],
+        "서면역 2호선 승강장" : ["부산진구 부전1동 가야대로 789", "35.1579012", "129.0569016", "2호선 승강장"],
+        "사상역" : ["괘법동", "35.1625397", "128.985913", "사상역 대합실"],
+        "수영역" : ["수영구 수영로 576", "35.167273", "129.115664", "한국환경공단", "도시대기", "주거지역"],
+        "연산역" : ["연산동", "35.1865484", "129.0780535", "연산연 대합실"],
+        "미남역" : ["온천3동", "35.2054534", "129.065853", "미남역 대합실"],
         "덕천역" : ["부산광역시 덕천2동", "35.2113369", "129.0036468", "덕천역 대합실"]
     ]
     
-    // 35.1173881,129.0465578
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "부산 미세먼지 지도"
+        self.title = "부산 실내미세먼지 지도"
         // Do any additional setup after loading the view, typically from a nib.
         
         myParse()
@@ -191,13 +191,17 @@ class ViewController: UIViewController, MKMapViewDelegate, XMLParserDelegate {
         let vStation = viewAnno.title
         
         
-        let mTitle = "미세먼지(PM 10)  \(tPM10!) (\(vPM10!) ug/m3)"
+        //let mTitle = "미세먼지(PM 10)  \(tPM10!) (\(vPM10!) ug/m3)"
+        
+        
         
         let ac = UIAlertController(title: vStation! + " 대기질 측정소", message: nil, preferredStyle: .alert)
+        
         ac.addAction(UIAlertAction(title: "측정시간  " + currentTime! , style: .default, handler: nil))
         
-        ac.addAction(UIAlertAction(title: mTitle, style: .default, handler: nil))
+        ac.addAction(UIAlertAction(title: "PM10 : " + vPM10!, style: .default, handler: nil))
         
+        //ac.addAction(UIAlertAction(title: mTitle, style: .default, handler: nil))
         ac.addAction(UIAlertAction(title: "닫기", style: .cancel, handler: nil))
         self.present(ac, animated: true, completion: nil)
         
